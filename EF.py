@@ -144,3 +144,68 @@ def menu():
         print("5. Pruebas Automáticas")
         print("6. Salir")
         opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            cadena1 = input("Ingrese cadena 1: ")
+            cadena2 = input("Ingrese cadena 2: ")
+            print("Cadenas cargadas correctamente.\n")
+
+        elif opcion == "2":
+            if not cadena1 or not cadena2:
+                print("Primero ingrese las cadenas (opción 1)\n")
+            else:
+                print("Ejecutando Fuerza Bruta...")
+                r, llamadas, t = EditDistanceFuerzaBruta(cadena1, cadena2)
+                print("Distancia:", r)
+                print("Llamadas:", llamadas)
+                print("Tiempo:", t, "unidades\n")
+
+        elif opcion == "3":
+            if not cadena1 or not cadena2:
+                print("Primero ingrese las cadenas (opción 1)\n")
+            else:
+                print("Ejecutando Programación Dinámica...")
+                r, t = EditDistanceProgramacionDinamicaSimple(cadena1, cadena2)
+                print("Distancia:", r)
+                print("Tiempo:", t, "unidades\n")
+
+        elif opcion == "4":
+            if not cadena1 or not cadena2:
+                print("Primero ingrese las cadenas (opción 1)\n")
+            else:
+                print("COMPARANDO AMBOS ALGORITMOS:")
+                fb, llamadas, tfb = EditDistanceFuerzaBruta(cadena1, cadena2)
+                dp, tdp = EditDistanceProgramacionDinamicaSimple(cadena1, cadena2)
+
+                print("\n1. Fuerza Bruta:")
+                print("   Distancia:", fb)
+                print("   Llamadas:", llamadas)
+                print("   Tiempo:", tfb)
+                print("   Complejidad: O(3^(n+m))")
+
+                print("\n2. Programación Dinámica:")
+                print("   Distancia:", dp)
+                print("   Tiempo:", tdp)
+                print("   Complejidad: O(n*m)")
+
+                print("\n3. Análisis Comparativo:")
+                print("   Mismo resultado:", "SI" if fb == dp else "NO")
+
+                if tdp > 0:
+                    print("   Mejora de tiempo:", tfb / tdp, "x más rápido")
+                print()
+
+        elif opcion == "5":
+            EjecutarPruebasAutomaticas()
+            print()
+
+        elif opcion == "6":
+            print("Saliendo...")
+            break
+
+        else:
+            print("Opción inválida.\n")
+
+
+
+menu()
