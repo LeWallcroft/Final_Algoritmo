@@ -11,3 +11,36 @@ def Minimo3(a, b, c):
 def MinimoSimple(a, b):
     return min(a, b)
 
+# ====================================================
+# FUERZA BRUTA (BACKTRACKING)
+# ====================================================
+
+def BacktrackFB(i, j, cadena1, cadena2, contador):
+    contador[0] += 1
+
+    if i >= len(cadena1):  
+        return len(cadena2) - j
+    if j >= len(cadena2):
+        return len(cadena1) - i
+
+    char1 = cadena1[i]
+    char2 = cadena2[j]
+
+    if char1 == char2:
+        return BacktrackFB(i + 1, j + 1, cadena1, cadena2, contador)
+    else:
+        costoIns = 1 + BacktrackFB(i, j + 1, cadena1, cadena2, contador)
+        costoElim = 1 + BacktrackFB(i + 1, j, cadena1, cadena2, contador)
+        costoSub = 1 + BacktrackFB(i + 1, j + 1, cadena1, cadena2, contador)
+        return Minimo3(costoIns, costoElim, costoSub)
+
+
+def EditDistanceFuerzaBruta(cadena1, cadena2):
+    contador = [0]
+    inicio = time.time()
+
+    resultado = BacktrackFB(0, 0, cadena1, cadena2, contador)
+
+    tiempo = contador[0] 
+
+    return resultado, contador[0], tiempo
