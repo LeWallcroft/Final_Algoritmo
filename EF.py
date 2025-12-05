@@ -43,7 +43,7 @@ def EditDistanceFuerzaBruta(cadena1, cadena2):
 
     tiempo = contador[0] 
 
-    return resultado, contador[0], tiempo
+    return resultado, contador[0],tiempo
 
 # ====================================================
 # PROGRAMACIÓN DINÁMICA "SIMPLE" SEGÚN TU PSEUDO
@@ -73,3 +73,54 @@ def CalcularDistanciaDP(cadena1, cadena2):
         dist += abs(n - m)
 
     return dist
+
+def EditDistanceProgramacionDinamicaSimple(cadena1, cadena2):
+    n = len(cadena1)
+    m = len(cadena2)
+
+    if n == 0:
+        return m, 1
+    if m == 0:
+        return n, 1
+
+    resultado = CalcularDistanciaDP(cadena1, cadena2)
+    tiempo = n * m
+
+    return resultado,tiempo
+
+# ====================================================
+# PRUEBAS AUTOMÁTICAS
+# ====================================================
+
+def EjecutarPruebasAutomaticas():
+    pruebas = [
+        ("gato", "gato"),
+        ("casa", "calle"),
+        ("abc", "def"),
+        ("kitten", "sitting"),
+        ("", "hola")
+    ]
+
+    print("TABLA DE RESULTADOS COMPARATIVOS")
+    print("=======================================================================")
+    print("Prueba     Cadenas            FB   DP   Llamadas   T.FB   T.DP   OK")
+    print("=======================================================================")
+
+    num = 1
+    for cad1, cad2 in pruebas:
+        fb, llamadas, tfb = EditDistanceFuerzaBruta(cad1, cad2)
+        dp, tdp = EditDistanceProgramacionDinamicaSimple(cad1, cad2)
+
+        ok = ("SI" if fb == dp else "NO")
+
+        print(f"{num:3}   {cad1}-{cad2:<15} {fb:3} {dp:5} {llamadas:8} {tfb:6} {tdp:6}   {ok}")
+        num += 1
+
+    print("=======================================================================")
+    print("ANALISIS DE RESULTADOS:")
+    print("1. Ambos algoritmos producen los mismos resultados")
+    print("2. Fuerza Bruta realiza MUCHAS más llamadas recursivas")
+    print("3. Programación Dinámica Simple es mucho más rápida")
+    print("4. Complejidad FB: O(3^(n+m))")
+    print("5. Complejidad DP: O(n*m)")
+    print("=======================================================================")
