@@ -18,6 +18,7 @@ def MinimoSimple(a, b):
 def BacktrackFB(i, j, cadena1, cadena2, contador):
     contador[0] += 1
 
+
     if i >= len(cadena1):  
         return len(cadena2) - j
     if j >= len(cadena2):
