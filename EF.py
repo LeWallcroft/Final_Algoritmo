@@ -44,3 +44,32 @@ def EditDistanceFuerzaBruta(cadena1, cadena2):
     tiempo = contador[0] 
 
     return resultado, contador[0], tiempo
+
+# ====================================================
+# PROGRAMACIÓN DINÁMICA "SIMPLE" SEGÚN TU PSEUDO
+# ====================================================
+
+def CalcularDistanciaDP(cadena1, cadena2):
+    n = len(cadena1)
+    m = len(cadena2)
+
+    if n == 0:
+        return m
+    if m == 0:
+        return n
+
+    dist = 0
+
+    if n == m:
+        for i in range(n):
+            if cadena1[i] != cadena2[i]:
+                dist += 1
+    else:
+        minimo = min(n, m)
+        for i in range(minimo):
+            if cadena1[i] != cadena2[i]:
+                dist += 1
+
+        dist += abs(n - m)
+
+    return dist
