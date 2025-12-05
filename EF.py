@@ -124,3 +124,23 @@ def EjecutarPruebasAutomaticas():
     print("4. Complejidad FB: O(3^(n+m))")
     print("5. Complejidad DP: O(n*m)")
     print("=======================================================================")
+
+    # ====================================================
+# MENÚ PRINCIPAL
+# ====================================================
+
+def menu():
+    cadena1 = ""
+    cadena2 = ""
+
+    while True:
+        print("=============================================")
+        print("   COMPARACION DE ALGORITMOS - DISTANCIA DE EDICION")
+        print("=============================================")
+        print("1. Ingresar cadenas")
+        print("2. Ejecutar Fuerza Bruta")
+        print("3. Ejecutar Programación Dinámica")
+        print("4. Comparar ambos algoritmos")
+        print("5. Pruebas Automáticas")
+        print("6. Salir")
+        opcion = input("Seleccione una opción: ")
